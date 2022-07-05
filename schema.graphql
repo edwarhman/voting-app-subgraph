@@ -1,0 +1,41 @@
+type CandidatePosted @entity {
+  id: ID!
+  voting: BigInt! # uint256
+  name: String! # string
+  addr: Bytes! # address
+  id: BigInt! # uint256
+}
+
+type Initialized @entity {
+  id: ID!
+  version: Int! # uint8
+}
+
+type NewVote @entity {
+  id: ID!
+  voting: BigInt! # uint256
+  voter: Bytes! # address
+  candidate: Bytes! # address
+  candidateVotes: BigInt! # uint256
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type VoterStatusChanged @entity {
+  id: ID!
+  addr: Bytes! # address
+  voting: BigInt! # uint256
+  status: Int! # uint8
+}
+
+type VotingCreated @entity {
+  id: ID!
+  title: String! # string
+  description: String! # string
+  countdown: BigInt! # uint256
+  id: BigInt! # uint256
+}

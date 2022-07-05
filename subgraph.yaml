@@ -1,0 +1,38 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Voting
+    network: ropsten
+    source:
+      address: "0x7E0bCDE37dF3eA505646f1f95eeC5e7E542eE07A"
+      abi: Voting
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - CandidatePosted
+        - Initialized
+        - NewVote
+        - OwnershipTransferred
+        - VoterStatusChanged
+        - VotingCreated
+      abis:
+        - name: Voting
+          file: ./abis/Voting.json
+      eventHandlers:
+        - event: CandidatePosted(indexed uint256,string,indexed address,uint256)
+          handler: handleCandidatePosted
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: NewVote(indexed uint256,indexed address,indexed address,uint256)
+          handler: handleNewVote
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: VoterStatusChanged(indexed address,indexed uint256,indexed uint8)
+          handler: handleVoterStatusChanged
+        - event: VotingCreated(string,string,indexed uint256,indexed uint256)
+          handler: handleVotingCreated
+      file: ./src/voting.ts
