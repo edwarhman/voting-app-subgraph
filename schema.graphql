@@ -1,0 +1,7 @@
+type Voting @entity {
+  id: ID!
+  countdown: BigInt! # uint256
+  description: String! # uint256
+  title: String! # string
+}
+
